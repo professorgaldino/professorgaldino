@@ -21,6 +21,21 @@
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
+    .btn-material {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 18px;
+      padding: 14px 30px;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .btn-material:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -37,10 +52,9 @@
         <div class="inline-block relative">
           <button onclick="toggleDropdown()" class="text-gray-700 hover:text-blue-600 font-semibold w-full text-left md:text-center">Materiais ▾</button>
           <div id="dropdownMenu" class="absolute hidden bg-white border rounded-lg mt-2 w-56 shadow-lg z-50">
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Link 1</a>
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Link 2</a>
-            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Link 3</a>
-            <!-- Cole mais links aqui -->
+            <a href="#concursos" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Concursos Públicos</a>
+            <a href="#reforco" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Reforço Escolar</a>
+            <a href="#ensino-superior" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Ensino Superior</a>
           </div>
         </div>
         <a href="#publico" class="block px-4 py-2 md:p-0 text-gray-700 hover:text-blue-600 font-semibold">Público-Alvo</a>
@@ -54,29 +68,6 @@
     <div class="max-w-5xl mx-auto text-center px-4 z-10 relative">
       <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">Domine a Matemática e Conquiste Resultados!</h1>
       <p class="text-xl md:text-2xl mb-10 font-light">Estude com quem entende. Materiais completos para Concursos, Reforço Escolar e Universidade.</p>
-      <a href="#materiais" class="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-bold shadow-lg hover:bg-yellow-300 transition pulse">QUERO COMEÇAR AGORA</a>
-    </div>
-    <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-  </section>
-
-  <!-- Depoimentos -->
-  <section class="py-16 bg-yellow-50">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold text-gray-800 mb-10">Quem já estudou, recomenda!</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-2xl shadow-md">
-          <p class="italic">“Passei no concurso da minha cidade graças aos materiais do Professor Galdino. Matemática nunca foi tão fácil!”</p>
-          <p class="font-bold mt-4">— Ana Paula, 28 anos</p>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-md">
-          <p class="italic">“Usei o material no ensino médio e minhas notas subiram em poucos meses. Didática incrível!”</p>
-          <p class="font-bold mt-4">— Lucas Henrique, 16 anos</p>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-md">
-          <p class="italic">“Excelente apoio para disciplinas como cálculo e álgebra na faculdade. Recomendo muito!”</p>
-          <p class="font-bold mt-4">— Mariana Costa, 21 anos</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -85,53 +76,39 @@
     <div class="max-w-6xl mx-auto px-4 text-center">
       <h2 class="text-3xl font-bold text-gray-800 mb-10">Materiais Premium para sua Jornada</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Concursos Públicos -->
         <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-xl transition">
           <h3 class="text-xl font-bold text-blue-700 mb-2">Concursos Públicos</h3>
           <p class="text-gray-600 mb-4">Teoria, resolução de provas, mapas mentais e simulados atualizados.</p>
-          <a href="#contato" class="text-blue-600 font-semibold hover:underline">Ver mais</a>
+          <a href="#formSection" class="btn-material" onclick="openForm('Concursos Públicos')">Quero meu material de Concursos</a>
         </div>
+        <!-- Reforço Escolar -->
         <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-xl transition">
           <h3 class="text-xl font-bold text-blue-700 mb-2">Reforço Escolar</h3>
           <p class="text-gray-600 mb-4">Plano de estudos, exercícios com gabarito e acompanhamento pedagógico.</p>
-          <a href="#contato" class="text-blue-600 font-semibold hover:underline">Ver mais</a>
+          <a href="#formSection" class="btn-material" onclick="openForm('Reforço Escolar')">Quero meu material de Reforço</a>
         </div>
+        <!-- Ensino Superior -->
         <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-xl transition">
           <h3 class="text-xl font-bold text-blue-700 mb-2">Ensino Superior</h3>
           <p class="text-gray-600 mb-4">Conteúdo direcionado para cálculo, álgebra linear e estatística.</p>
-          <a href="#contato" class="text-blue-600 font-semibold hover:underline">Ver mais</a>
+          <a href="#formSection" class="btn-material" onclick="openForm('Ensino Superior')">Quero meu material de Ensino Superior</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Público-Alvo -->
-  <section id="publico" class="py-16 bg-blue-50">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold text-gray-800 mb-8">Para Quem é o Conteúdo?</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-2xl shadow-md">
-          <h3 class="text-xl font-semibold text-blue-700 mb-2">Estudantes</h3>
-          <p class="text-gray-600">Do Ensino Fundamental II ao Médio que precisam de apoio e reforço.</p>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-md">
-          <h3 class="text-xl font-semibold text-blue-700 mb-2">Concurseiros</h3>
-          <p class="text-gray-600">Pessoas que buscam aprovação em concursos municipais, estaduais e federais.</p>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-md">
-          <h3 class="text-xl font-semibold text-blue-700 mb-2">Universitários</h3>
-          <p class="text-gray-600">Alunos de cursos de exatas com dificuldades em disciplinas específicas.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contato -->
-  <section id="contato" class="py-16 bg-white">
+  <!-- Formulário para Nome e WhatsApp -->
+  <section id="formSection" class="py-16 bg-blue-50 hidden">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold text-gray-800 mb-6">Entre em Contato Agora</h2>
-      <p class="text-gray-600 mb-8">Tire dúvidas, solicite pacotes e comece sua jornada com o melhor da Matemática.</p>
-      <a href="https://wa.me/55SEUNUMEROAQUI" target="_blank" class="inline-block bg-green-500 text-white px-8 py-4 rounded-full font-bold hover:bg-green-600 transition">Fale pelo WhatsApp</a>
-      <p class="text-sm mt-4 text-gray-500">ou envie um e-mail para <a href="mailto:contato@professorgaldino.com" class="underline">contato@professorgaldino.com</a></p>
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Complete o Formulário</h2>
+      <p class="text-lg text-gray-700 mb-8">Preencha com seu nome e WhatsApp para receber seu material gratuito.</p>
+      <form id="contactForm" class="space-y-4">
+        <input id="name" type="text" class="w-full p-4 border border-gray-300 rounded-lg" placeholder="Nome Completo" required>
+        <input id="whatsapp" type="text" class="w-full p-4 border border-gray-300 rounded-lg" placeholder="WhatsApp com DDD" required>
+        <input id="material" type="hidden" value="">
+        <button type="submit" class="btn-material w-full">Enviar para o WhatsApp</button>
+      </form>
     </div>
   </section>
 
@@ -141,25 +118,32 @@
   </footer>
 
   <script>
-    function toggleDropdown() {
-      const menu = document.getElementById("dropdownMenu");
-      menu.classList.toggle("hidden");
+    // Função para mostrar o formulário
+    function openForm(material) {
+      document.getElementById("formSection").classList.remove("hidden");
+      document.getElementById("material").value = material;
     }
 
-    function toggleMobileMenu() {
-      const nav = document.getElementById("navMenu");
-      nav.classList.toggle("hidden");
-    }
+    // Função para enviar os dados do formulário para o WhatsApp
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value;
+      const whatsapp = document.getElementById("whatsapp").value;
+      const material = document.getElementById("material").value;
+      const message = `Quero meu material gratuito de: ${material}. Nome: ${name}. WhatsApp: ${whatsapp}`;
 
-    document.getElementById("menuBtn").addEventListener("click", toggleMobileMenu);
-
-    document.addEventListener('click', function(event) {
-      const menu = document.getElementById("dropdownMenu");
-      const button = event.target.closest("button");
-      if (!event.target.closest("#dropdownMenu") && !button) {
-        menu.classList.add("hidden");
-      }
+      // URL do WhatsApp com a mensagem
+      const whatsappLink = `https://wa.me/5519996470380?text=${encodeURIComponent(message)}`;
+      
+      // Redireciona para o WhatsApp
+      window.location.href = whatsappLink;
     });
+
+    // Função para alternar a visibilidade do dropdown
+    function toggleDropdown() {
+      const dropdown = document.getElementById("dropdownMenu");
+      dropdown.classList.toggle("hidden");
+    }
   </script>
 </body>
 </html>
