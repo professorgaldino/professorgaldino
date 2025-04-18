@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professor Galdino | Educação Matemática</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .hero {
+      background: linear-gradient(to right, #1e3a8a, #3b82f6);
+    }
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <img src="logoprofessorgaldino.png" alt="Logo Professor Galdino" class="h-14">
+      <button id="menuBtn" class="md:hidden text-gray-700 focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <nav id="navMenu" class="hidden md:flex md:space-x-6 text-sm md:text-base relative flex-col md:flex-row md:items-center absolute md:static top-full left-0 bg-white md:bg-transparent w-full md:w-auto shadow md:shadow-none">
+        <div class="inline-block relative">
+          <button onclick="toggleDropdown()" class="text-gray-700 hover:text-blue-600 font-semibold w-full text-left md:text-center">Materiais ▾</button>
+          <div id="dropdownMenu" class="absolute hidden bg-white border rounded-lg mt-2 w-56 shadow-lg z-50">
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Link 1</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Link 2</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Link 3</a>
+            <!-- Cole mais links aqui -->
+          </div>
+        </div>
+        <a href="#publico" class="block px-4 py-2 md:p-0 text-gray-700 hover:text-blue-600 font-semibold">Público-Alvo</a>
+        <a href="#contato" class="block px-4 py-2 md:p-0 text-gray-700 hover:text-blue-600 font-semibold">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero text-white py-24 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto text-center px-4 z-10 relative">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">Domine a Matemática e Conquiste Resultados!</h1>
+      <p class="text-xl md:text-2xl mb-10 font-light">Estude com quem entende. Materiais completos para Concursos, Reforço Escolar e Universidade.</p>
+      <a href="#materiais" class="bg-yellow-400 text-gray-900 px-8 py-4 rounded-full font-bold shadow-lg hover:bg-yellow-300 transition pulse">QUERO COMEÇAR AGORA</a>
+    </div>
+    <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section class="py-16 bg-yellow-50">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-800 mb-10">Quem já estudou, recomenda!</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+          <p class="italic">“Passei no concurso da minha cidade graças aos materiais do Professor Galdino. Matemática nunca foi tão fácil!”</p>
+          <p class="font-bold mt-4">— Ana Paula, 28 anos</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+          <p class="italic">“Usei o material no ensino médio e minhas notas subiram em poucos meses. Didática incrível!”</p>
+          <p class="font-bold mt-4">— Lucas Henrique, 16 anos</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+          <p class="italic">“Excelente apoio para disciplinas como cálculo e álgebra na faculdade. Recomendo muito!”</p>
+          <p class="font-bold mt-4">— Mariana Costa, 21 anos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Materiais -->
+  <section id="materiais" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-800 mb-10">Materiais Premium para sua Jornada</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-xl transition">
+          <h3 class="text-xl font-bold text-blue-700 mb-2">Concursos Públicos</h3>
+          <p class="text-gray-600 mb-4">Teoria, resolução de provas, mapas mentais e simulados atualizados.</p>
+          <a href="#contato" class="text-blue-600 font-semibold hover:underline">Ver mais</a>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-xl transition">
+          <h3 class="text-xl font-bold text-blue-700 mb-2">Reforço Escolar</h3>
+          <p class="text-gray-600 mb-4">Plano de estudos, exercícios com gabarito e acompanhamento pedagógico.</p>
+          <a href="#contato" class="text-blue-600 font-semibold hover:underline">Ver mais</a>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-xl transition">
+          <h3 class="text-xl font-bold text-blue-700 mb-2">Ensino Superior</h3>
+          <p class="text-gray-600 mb-4">Conteúdo direcionado para cálculo, álgebra linear e estatística.</p>
+          <a href="#contato" class="text-blue-600 font-semibold hover:underline">Ver mais</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Público-Alvo -->
+  <section id="publico" class="py-16 bg-blue-50">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-800 mb-8">Para Quem é o Conteúdo?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+          <h3 class="text-xl font-semibold text-blue-700 mb-2">Estudantes</h3>
+          <p class="text-gray-600">Do Ensino Fundamental II ao Médio que precisam de apoio e reforço.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+          <h3 class="text-xl font-semibold text-blue-700 mb-2">Concurseiros</h3>
+          <p class="text-gray-600">Pessoas que buscam aprovação em concursos municipais, estaduais e federais.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+          <h3 class="text-xl font-semibold text-blue-700 mb-2">Universitários</h3>
+          <p class="text-gray-600">Alunos de cursos de exatas com dificuldades em disciplinas específicas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">Entre em Contato Agora</h2>
+      <p class="text-gray-600 mb-8">Tire dúvidas, solicite pacotes e comece sua jornada com o melhor da Matemática.</p>
+      <a href="https://wa.me/55SEUNUMEROAQUI" target="_blank" class="inline-block bg-green-500 text-white px-8 py-4 rounded-full font-bold hover:bg-green-600 transition">Fale pelo WhatsApp</a>
+      <p class="text-sm mt-4 text-gray-500">ou envie um e-mail para <a href="mailto:contato@professorgaldino.com" class="underline">contato@professorgaldino.com</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center py-6">
+    <p>&copy; 2025 Professor Galdino. Todos os direitos reservados. | Matemática com Resultado</p>
+  </footer>
+
+  <script>
+    function toggleDropdown() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.classList.toggle("hidden");
+    }
+
+    function toggleMobileMenu() {
+      const nav = document.getElementById("navMenu");
+      nav.classList.toggle("hidden");
+    }
+
+    document.getElementById("menuBtn").addEventListener("click", toggleMobileMenu);
+
+    document.addEventListener('click', function(event) {
+      const menu = document.getElementById("dropdownMenu");
+      const button = event.target.closest("button");
+      if (!event.target.closest("#dropdownMenu") && !button) {
+        menu.classList.add("hidden");
+      }
+    });
+  </script>
+</body>
+</html>
