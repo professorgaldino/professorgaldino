@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
-            background: #f0f2f5;
+            background: #ffffff; /* fundo branco */
             text-align: center;
         }
         img {
@@ -24,14 +24,16 @@
             padding: 20px 0;
         }
         canvas {
-            min-width: 1500px; /* para forçar rolagem e barras mais largas */
-            height: 800px !important; /* altura grande */
+            min-width: 1500px;
+            height: 800px !important;
+            background: #ffffff; /* fundo branco para o canvas */
+            border: 1px solid #ccc; /* borda leve para destacar */
         }
         table {
             margin: 20px auto;
             width: 95%;
             border-collapse: collapse;
-            background: #fff;
+            background: #ffffff;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         th, td {
@@ -109,7 +111,7 @@
         { aluno: "JONATAS DOS SANTOS CADINI", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 0, abril: 6 },
     ];
 
-    // Montar tabela
+    // Preencher tabela
     const tbody = document.getElementById('tabelaDados');
     dadosAlunos.forEach(d => {
         const total = d.marco + d.abril;
@@ -124,11 +126,10 @@
         `;
     });
 
-    // Dados para o gráfico
+    // Gráfico
     const labels = dadosAlunos.map(d => d.aluno);
     const dadosTotais = dadosAlunos.map(d => d.marco + d.abril);
 
-    // Gráfico
     const ctx = document.getElementById('faltasChart').getContext('2d');
     new Chart(ctx, {
         type: 'bar',
