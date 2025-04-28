@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Faltas nas Aulas Olímpicas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f2f5;
+            text-align: center;
+        }
+        img {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .grafico-container {
+            width: 100%;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+        canvas {
+            min-width: 1500px; /* para forçar rolagem e barras mais largas */
+            height: 800px !important; /* altura grande */
+        }
+        table {
+            margin: 20px auto;
+            width: 95%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<img src="logoprofessorgaldino.png" alt="Logo Professor Galdino">
+<h1>Faltas nas Aulas Olímpicas</h1>
+
+<div class="grafico-container">
+    <canvas id="faltasChart"></canvas>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Aluno</th>
+            <th>Escola</th>
+            <th>Março</th>
+            <th>Abril</th>
+            <th>Total de Faltas</th>
+        </tr>
+    </thead>
+    <tbody id="tabelaDados">
+        <!-- Preenchido pelo JavaScript -->
+    </tbody>
+</table>
+
+<script>
+    const dadosAlunos = [
+        { aluno: "ANNA BEATRIZ PEREIRA MONTEIRO", escola: "NELSON GIRARD PROF", marco: 0, abril: 0 },
+        { aluno: "DIOGO LEAL DA SILVA SABINO", escola: "NELSON GIRARD PROF", marco: 0, abril: 3 },
+        { aluno: "NYCOLLAS CAMPIDELI FONSECA", escola: "NELSON GIRARD PROF", marco: 0, abril: 0 },
+        { aluno: "LUAN VICKTOR FERREIRA MOURA", escola: "BENEDITA NAIR XAVIER VEDOVELLO PROFA", marco: 0, abril: 0 },
+        { aluno: "ELLEN ZAWITOSKI GOBBO", escola: "SONIA APARECIDA MAXIMIANO BUENO PROFA", marco: 7, abril: 6 },
+        { aluno: "PEDRO HENRIQUE AURIEMA DE ALMEIDA", escola: "SONIA APARECIDA MAXIMIANO BUENO PROFA", marco: 0, abril: 3 },
+        { aluno: "MICAELLE GUEDES DO NASCIMENTO", escola: "SONIA APARECIDA MAXIMIANO BUENO PROFA", marco: 0, abril: 0 },
+        { aluno: "JÉSSICA FERRACINI DOS SANTOS", escola: "NELSON GIRARD PROF", marco: 0, abril: 3 },
+        { aluno: "LUIZ ROBERTO BERNARDINO", escola: "BENEDITA NAIR XAVIER VEDOVELLO PROFA", marco: 0, abril: 6 },
+        { aluno: "LUAN DAVID TAVARES DE OLIVEIRA", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 0, abril: 0 },
+        { aluno: "ANDRE GIMENEZ TONOBOHON", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 3, abril: 3 },
+        { aluno: "ENZO CHAVES", escola: "SONIA APARECIDA MAXIMIANO BUENO PROFA", marco: 0, abril: 0 },
+        { aluno: "BRAYAN ALVES PEREIRA", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 0, abril: 6 },
+        { aluno: "ISABELLY CRISTINA DE OLIVEIRA CONTARDI", escola: "SONIA APARECIDA MAXIMIANO BUENO PROFA", marco: 0, abril: 0 },
+        { aluno: "GABRIEL PIRES TEODORO", escola: "SONIA APARECIDA MAXIMIANO BUENO PROFA", marco: 7, abril: 0 },
+        { aluno: "ISABELLY VAZ LAMANNA", escola: "FRANCISCO ANTÔNIO GONÇALVES", marco: 0, abril: 6 },
+        { aluno: "KENNEDY GABRIEL DO NASCIMENTO", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 7, abril: 6 },
+        { aluno: "GABRIEL HENRIQUE BATISTA BANDO", escola: "ROBERTO ANTONIALLI", marco: 0, abril: 0 },
+        { aluno: "LÍVIA PICOLLOTO DE ASSIS", escola: "SONIA APARECIDA MAXIMIANO BUENO PROFA", marco: 7, abril: 3 },
+        { aluno: "KEMYLLY VITÓRIA PROENÇA ALVES", escola: "BENEDITA NAIR XAVIER VEDOVELLO PROFA", marco: 7, abril: 6 },
+        { aluno: "ALEXSANDRO OLIVEIRA DA SILVA", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 7, abril: 3 },
+        { aluno: "LETÍCIA MACHADO DA SILVA", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 7, abril: 9 },
+        { aluno: "APOLO MIGUEL TAVARES", escola: "SONIA APARECIDA MAXIMIANO BUENO PROFA", marco: 0, abril: 0 },
+        { aluno: "ANDRÉ EDUARDO TAVARES", escola: "NELSON GIRARD PROF", marco: 0, abril: 0 },
+        { aluno: "VITOR HUGO RIBEIRO DE LIMA", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 3, abril: 3 },
+        { aluno: "ROBSON PERUZZO", escola: "FRANCISCO ANTÔNIO GONÇALVES", marco: 3, abril: 6 },
+        { aluno: "ANA LUIZA FREITAS SILVA", escola: "FRANCISCO ANTÔNIO GONÇALVES", marco: 0, abril: 3 },
+        { aluno: "RUAN RABELLO", escola: "SONIA APARECIDA MAXIMIANO BUENO PROFA", marco: 3, abril: 6 },
+        { aluno: "ISABELLA BARROS ORTIZ DE CAMARGO", escola: "FRANCISCO ANTÔNIO GONÇALVES", marco: 0, abril: 0 },
+        { aluno: "ALYCE VITÓRIA FRAGA", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 0, abril: 6 },
+        { aluno: "LUCAS DAVI DA SILVA COSTA", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 7, abril: 9 },
+        { aluno: "LORENA GABRIELLY DE OLIVEIRA", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 0, abril: 6 },
+        { aluno: "JONATAS DOS SANTOS CADINI", escola: "THEREZINHA APPARECIDA VILLANI DE CAMARGO PROFA", marco: 0, abril: 6 },
+    ];
+
+    // Montar tabela
+    const tbody = document.getElementById('tabelaDados');
+    dadosAlunos.forEach(d => {
+        const total = d.marco + d.abril;
+        tbody.innerHTML += `
+            <tr>
+                <td>${d.aluno}</td>
+                <td>${d.escola}</td>
+                <td>${d.marco}</td>
+                <td>${d.abril}</td>
+                <td>${total}</td>
+            </tr>
+        `;
+    });
+
+    // Dados para o gráfico
+    const labels = dadosAlunos.map(d => d.aluno);
+    const dadosTotais = dadosAlunos.map(d => d.marco + d.abril);
+
+    // Gráfico
+    const ctx = document.getElementById('faltasChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Total de Faltas',
+                data: dadosTotais,
+                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            animation: {
+                duration: 1500,
+                easing: 'easeOutElastic'
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Total de Faltas'
+                    }
+                },
+                y: {
+                    ticks: {
+                        autoSkip: false,
+                        font: {
+                            size: 10
+                        }
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (context) => `Faltas: ${context.raw}`
+                    }
+                },
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
