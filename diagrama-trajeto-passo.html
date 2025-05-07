@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Diagrama Trajeto-Passo</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label, input, button {
+      font-size: 16px;
+    }
+
+    input {
+      padding: 8px;
+      width: 80%;
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    canvas {
+      border: 1px solid #ccc;
+      margin-top: 20px;
+      background-color: #fff;
+    }
+
+    .legenda {
+      margin-top: 20px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #333;
+      background: #e9f0ff;
+      padding: 15px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Gerador de Diagrama Trajeto-Passo</h2>
+
+    <label for="movimentos">Sequência de movimentos (ex: A+, B+, A-, B-):</label><br>
+    <input type="text" id="movimentos" placeholder="Ex: A+, B+, A-, B-"><br>
+
+    <button onclick="desenharDiagrama()">Gerar Diagrama</button>
+
+    <canvas id="canvas" width="900" height="400"></canvas>
+
+    <div class="legenda">
+      <strong>Legenda:</strong><br>
+      🔹 Linhas azuis: indicam os níveis 0 (recuo) e 1 (avanço) de cada atuador.<br>
+      🟧 Linhas laranjas: representam os passos da sequência.<br>
+      ⚫ Linhas pretas: mostram o movimento do atuador no passo correspondente.<br><br>
+      📌 Cada atuador é representado por uma linha (A, B, C...) e cada ponto de avanço/recuo é interpretado com base na convenção:<br>
+      → <strong>Par = Avanço (ex: 1.2 → A+), Ímpar = Retorno (ex: 1.3 → A-)</strong>.
+    </div>
+  </div>
+
+  <script>
+    function desenharDiagrama() {
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const entrada = document.getElementById("movimentos").value.trim();
+      if (!entrada) return;
+
+      const movimentos = entrada.split(',').map(m => m.trim().toUpperCase());
+      const atuadores = [...new Set(movimentos.map(m => m[0]))];
+      atuadores.sort();
+
+      const passoLargura = 100;
+      const linhaAltura = 50;
+      const topMargin = 50;
+
+      atuadores.forEach((atuador, i) => {
+        const yBase = topMargin + i * 100;
+        ctx.strokeStyle = "#007bff";
+        ctx.lineWidth = 1;
+
+        // nível 1 (avanço)
+        ctx.beginPath();
+        ctx.moveTo(50, yBase - linhaAltura);
+        ctx.lineTo(canvas.width - 20, yBase - linhaAltura);
+        ctx.stroke();
+
+        // nível 0 (recuo)
+        ctx.beginPath();
+        ctx.moveTo(50, yBase);
+        ctx.lineTo(canvas.width - 20, yBase);
+        ctx.stroke();
+
+        // rótulo do atuador
+        ctx.fillStyle = "black";
+        ctx.font = "14px Arial";
+        ctx.fillText(`Atuador ${atuador}`, 5, yBase - 15);
+      });
+
+      // Estado atual dos atuadores (true = avanço, false = recuo)
+      const estadoAtual = {};
+      atuadores.forEach(a => estadoAtual[a] = false);
+
+      movimentos.forEach((mov, index) => {
+        const x = 70 + (index + 1) * passoLargura;
+
+        // linha vertical do passo
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.strokeStyle = "orange";
+        ctx.stroke();
+
+        const atuador = mov[0];
+        const direcao = mov[1];
+        const atuadorIndex = atuadores.indexOf(atuador);
+        const yBase = topMargin + atuadorIndex * 100;
+        const xAnterior = 70 + index * passoLargura;
+
+        const yAnterior = estadoAtual[atuador] ? yBase - linhaAltura : yBase;
+        const yAtual = direcao === '+' ? yBase - linhaAltura : yBase;
+
+        // linha de movimento
+        ctx.beginPath();
+        ctx.moveTo(xAnterior, yAnterior);
+        ctx.lineTo(x, yAtual);
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        estadoAtual[atuador] = direcao === '+' ? true : false;
+
+        // manter posição dos demais atuadores
+        atuadores.forEach((outroAtuador, i) => {
+          if (outroAtuador === atuador) return;
+
+          const yBaseOutro = topMargin + i * 100;
+          const yNivel = estadoAtual[outroAtuador] ? yBaseOutro - linhaAltura : yBaseOutro;
+
+          ctx.beginPath();
+          ctx.moveTo(xAnterior, yNivel);
+          ctx.lineTo(x, yNivel);
+          ctx.strokeStyle = "black";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        });
+
+        // rótulo do passo
+        ctx.fillStyle = "black";
+        ctx.font = "14px Arial";
+        ctx.fillText(mov, x - 15, 20);
+      });
+    }
+  </script>
+</body>
+</html>
