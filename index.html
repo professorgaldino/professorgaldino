@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preparatório ETEC | Professor Galdino</title>
+<title>Professor Galdino</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -40,26 +40,27 @@ body {
     color: #cbd5f5;
 }
 
-/* TOP BAR */
+/* TOP BAR (AGORA EM COLUNA) */
 .top-bar {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 12px;
     margin-top: 20px;
 }
 
 .info {
     color: #cbd5f5;
+    font-size: 1.05em;
+    text-align: center;
 }
 
 /* CTA */
 .cta-btn {
     background: linear-gradient(135deg, #1ea7b6, #158a97);
     border: none;
-    padding: 14px 18px;
-    font-size: 1em;
+    padding: 16px 20px;
+    font-size: 1.1em;
     color: white;
     border-radius: 12px;
     cursor: pointer;
@@ -157,11 +158,10 @@ ul {
     <h1>Passe na ETEC com mais segurança</h1>
     <p>Preparação prática, direta e focada no que realmente cai na prova</p>
 
-    <!-- TOP BAR (INFO + BOTÃO) -->
     <div class="top-bar">
         <span class="info">
             💻 Online • 📅 Sábados • ⏰ 9h às 10h
-        </span><br>
+        </span>
 
         <button class="cta-btn" onclick="whatsapp()">
             Quero minha preparação para ETEC
@@ -197,7 +197,6 @@ ul {
         <li>✔ ⚡ Correção em tempo real</li>
     </ul>
 
-    <!-- BONUS -->
     <div class="bonus">
         🎁 BÔNUS EXCLUSIVO:<br>
         Cronograma de estudos personalizado até a prova
