@@ -40,31 +40,29 @@ body {
     color: #cbd5f5;
 }
 
-/* BADGE */
-.badge {
-    background: var(--primary);
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 50px;
+/* TOP BAR */
+.top-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
     margin-top: 20px;
-    font-weight: bold;
+}
+
+.info {
+    color: #cbd5f5;
 }
 
 /* CTA */
-.cta-main {
-    margin-top: 30px;
-}
-
 .cta-btn {
     background: linear-gradient(135deg, #1ea7b6, #158a97);
     border: none;
-    padding: 18px;
-    font-size: 1.2em;
+    padding: 14px 18px;
+    font-size: 1em;
     color: white;
     border-radius: 12px;
     cursor: pointer;
-    width: 100%;
-    max-width: 400px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     transition: 0.3s;
 }
@@ -101,6 +99,16 @@ body {
     padding: 10px;
     border-radius: 10px;
     margin: 15px 0;
+    font-weight: bold;
+}
+
+/* BONUS */
+.bonus {
+    background: #d1fae5;
+    border: 2px dashed #10b981;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
     font-weight: bold;
 }
 
@@ -149,11 +157,12 @@ ul {
     <h1>Passe na ETEC com mais segurança</h1>
     <p>Preparação prática, direta e focada no que realmente cai na prova</p>
 
-    <div class="badge">
-        💻 Online • 📅 Sábados • ⏰ 9h às 10h
-    </div>
+    <!-- TOP BAR (INFO + BOTÃO) -->
+    <div class="top-bar">
+        <span class="info">
+            💻 Online • 📅 Sábados • ⏰ 9h às 10h
+        </span>
 
-    <div class="cta-main">
         <button class="cta-btn" onclick="whatsapp()">
             Quero minha preparação para ETEC
         </button>
@@ -187,6 +196,12 @@ ul {
         <li>✔ 📊 Exercícios para treino</li>
         <li>✔ ⚡ Correção em tempo real</li>
     </ul>
+
+    <!-- BONUS -->
+    <div class="bonus">
+        🎁 BÔNUS EXCLUSIVO:<br>
+        Cronograma de estudos personalizado até a prova
+    </div>
 
     <button class="cta-btn" onclick="whatsapp()">
         Quero minha preparação para ETEC
