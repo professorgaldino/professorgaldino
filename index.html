@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Professor Galdino</title>
+<title>Preparatório ETEC | Professor Galdino</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
     --primary: #1ea7b6;
-    --dark: #0b1f2a;
 }
 
 body {
@@ -26,8 +25,14 @@ body {
     padding: 60px 20px;
 }
 
+/* LOGO GRANDE E REDONDO */
 .hero img {
-    width: 120px;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #1ea7b6;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .hero h1 {
@@ -40,7 +45,7 @@ body {
     color: #cbd5f5;
 }
 
-/* TOP BAR (AGORA EM COLUNA) */
+/* TOP BAR */
 .top-bar {
     display: flex;
     flex-direction: column;
@@ -52,10 +57,9 @@ body {
 .info {
     color: #cbd5f5;
     font-size: 1.05em;
-    text-align: center;
 }
 
-/* CTA */
+/* BOTÃO */
 .cta-btn {
     background: linear-gradient(135deg, #1ea7b6, #158a97);
     border: none;
@@ -155,6 +159,7 @@ ul {
 <!-- HERO -->
 <div class="hero">
     <img src="logo.png">
+
     <h1>Passe na ETEC com mais segurança</h1>
     <p>Preparação prática, direta e focada no que realmente cai na prova</p>
 
@@ -219,8 +224,8 @@ ul {
     <img src="avatar.png" class="avatar">
 
     <p>
-        Professor de Matemática, Física e Química e Coordenador de Curso na ETEC.<br>
-        Experiência com preparação para a ETEC/FATEC, com FOCO no que realmente cai na prova!
+        Professor da rede pública e coordenador técnico.<br>
+        Experiência com preparação para a ETEC.
     </p>
 </div>
 
